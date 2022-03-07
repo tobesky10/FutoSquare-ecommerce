@@ -1,0 +1,16 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<section class="create_product">
+    <h2> Add a Product</h2>
+    <form action=" " method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Add Product"/>
+
+    </form>
+
+</section>
+
+
+{% endblock %}

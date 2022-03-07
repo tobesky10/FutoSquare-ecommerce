@@ -1,0 +1,65 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main</title>
+</head>
+<body>
+
+
+<header>
+    <a href="/">
+        <h1> FUTOSHOP </h1>
+    </a>
+</header>
+     <nav>
+         <ul>
+             <li><a href="/">Home </a> </li>
+             {% if request.user.is_authenticated %}
+             <li><a href=" {% url 'logout' %}">Logout </a> </li>
+             <li><a href="{% url 'profile' request.user.id %}">Profile </a> </li>
+
+             {% else %}
+             <li><a href=" {% url 'login' %}">Login </a> </li>
+             {% endif %}
+             <li><a href="{% url 'cart' %}">Cart </a> </li>
+         </ul> {% now 'j F Y H:i' %}<div>
+         <form method="GET" action="">
+             <input type="search" name="q" placeholder="Search item here..."/>
+         </form>
+     </div>
+     </nav><hr>
+<main>
+{% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li>
+                {{ message }}
+            </li>
+            {% endfor %}
+
+        </ul>
+
+        {% endif %}
+    {% block content %}
+
+
+    {% endblock %}
+</main><hr>
+
+
+<footer>
+<p><h2> CONTACT US</h2></p>
+    <p> Email: tobesky10@gmail.com </p>
+    <p>Facebook</p>
+    <p>Whatsapp</p>
+    <p>Instagram</p>
+</footer>
+
+
+
+</body>
+</html>

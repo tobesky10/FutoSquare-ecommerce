@@ -1,0 +1,24 @@
+
+{% extends 'main.html' %}
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+<section>
+
+    <h1> CART </h1>
+{% for para in obj %}
+    <p><img src="{{ para.product.product_image.url }}" width="200px" height="200px"{{ para.product_image }}/>  </p>
+
+    <p>Date added: {{ para.date_added }}</p>
+    <p>{{ para.product.name }}</p>
+    <p> Quantity: {{ para.quantity }}</p>
+    <p>Email: {{ para.user}}</p>
+
+    {% endfor %}
+
+        {% else %}
+        <p> Please Log in</p>
+{% endif %}
+</section>
+
+{% endblock %}

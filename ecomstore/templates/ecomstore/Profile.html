@@ -1,0 +1,38 @@
+{% extends 'main.html'%}
+{% load static %}
+{% block content %}
+
+    <section class=" profile">
+    <div id="profile_image">
+        <img src="{% static 'images/avatar.svg'%}" width="100px" height="100px"/>
+    </div>
+
+
+    <h3><p>{{ profile.first_name }} {{ profile.last_name }}</p></h3>
+
+    <p>{{ profile.email }}</p>
+
+    <p>Lives at: {{ profile.address }}</p>
+
+    <p> Phone Number: +234{{ profile.phone_number }}</p>
+
+
+    <p> <h2> Your Products </h2> </p>
+        {% for each in products %}
+            <p> <img src=" {{ each.product_image.url}}" width="50px" height="50px"/> </p>
+            <p>Product name: {{ each.name }}</p>
+            <p>Description: {{ each.description }}</p>
+            <a href="{% url 'update-product' each.id %}"> Edit product</a>
+
+        {% endfor %}
+
+    </section>
+
+
+
+
+
+
+
+
+{% endblock %}

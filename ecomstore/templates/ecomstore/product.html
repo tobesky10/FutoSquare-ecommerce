@@ -1,0 +1,80 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <style>
+    .product_container{
+        position: relative;
+        place-items: center;
+        align-items: center;
+    }
+    </style>
+
+    <section class="product_container" >
+    <section>
+        <div id="product_image">
+            <p> Category : {{ product.category }}</p>
+                        <img src=" {{ product.product_image.url }}" width="200px" height="200px" />
+
+        </div>
+            <p> <span id="product_price">#{{ product.price }} </span>
+                <span id="product_name">  {{ product.name }}</span>
+                <span id="product_rating"> {{ product.rating }}</span>
+            </p>
+            <p><span id="product_description"> {{ product.description }}</span></p>
+
+
+    </section>
+    <form action="{% url 'cart' %}" method="POST" >
+        {% csrf_token %}
+        <button type="submit" name="addtocart" > Add to Cart</button>
+{#        <button type="button" name="wishlist" formaction="/"> WIsh list</button>#}
+    </form><br/>
+
+    <section id="customer-review">
+            <h2>Customer Review </h2>
+                {% if comments %}
+
+        {% for comment in comments %}
+
+        <div id="reviews">
+            <strong>{{ comment.user.first_name|capfirst }} {{ comment.user.last_name|capfirst }} </strong> commented
+
+            <p>
+                {{ comment.review }}
+            </p>
+        </div><hr>
+        {% endfor %}
+
+                {% else %}
+        <p> No Review yet! </p>
+
+                {% endif %}
+    {% if request.user.is_authenticated %}
+    <form action="{% url 'create-review' %}" method="POST">
+        {% csrf_token %}
+        <textarea name="review" placeholder="Enter a review..."></textarea><br>
+
+        <input type="submit" value="Submit">
+    </form>
+    {% endif %}
+
+    </section>
+    <section id="related_items">
+
+        <h2> Related Items </h2>
+        {% if related %}
+        <a href="/">
+            <img src=" {{ related.product_image.url }}" width="200px" height="200px" />
+        {{ related.name }}
+        </a>
+            {% else %}
+            <p> No related products! </p>
+        {% endif %}
+
+
+    </section>
+
+    </section>
+
+
+{% endblock %}

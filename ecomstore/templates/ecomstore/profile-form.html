@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+    <section class="register-form">
+        <h1> CREATE A FUTOSHOP ACCOUNT </h1>
+
+
+        <form action=" " method="POST" >
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <input type="submit" value="Create Profile">
+
+        </form>
+        <p> Already have an account?</p>
+        <p><a href="{% url 'login' %}"> Sign In</a></p>
+
+
+
+    </section>
+
+
+
+
+{% endblock %}

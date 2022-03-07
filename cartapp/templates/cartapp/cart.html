@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart</title>
+</head>
+<body>
+
+    {% if request.user.is_authenticated %}
+
+ <h1> CART </h1>
+    {% for para in obj %}
+    <p>Date added: {{ para.date_added|timesince }}</p>
+    <p>Product: {{ para.product.name }}</p>
+    <p> Quantity: {{ para.quantity }}</p>
+    <p>User email: {{ para.user}}</p>
+    <p>User ID: {{ para.user.id}}</p>
+
+    {% endfor %}
+
+        {% else %}
+        <p> Please Log in</p>
+{% endif %}
+
+</body>
+</html>

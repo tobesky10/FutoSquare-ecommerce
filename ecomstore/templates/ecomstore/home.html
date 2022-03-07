@@ -1,0 +1,84 @@
+
+
+{% extends 'main.html' %}
+
+{% block content %}
+    <style>
+    .container{
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+    }
+    .product_section{
+        display: flex;
+        flex-direction: column;
+        gap: 10px
+    }
+</style>
+
+
+    <section class="search_result">
+            {% if not search %}
+            <h2> Search Results </h2>
+                <p> Results for "{{ q }}"</p>
+            {% for product in products %}
+                <a href="{% url 'product' product.id %}">
+                <div>
+                <img src="{{ product.product_image.url }}" width="200px" height="200px"/><br>
+                </div>
+                {{ product.name }}
+                </a>
+            {% endfor %}
+    {% endif %}
+
+
+            </section>
+    <section class="container">
+        <section class="category_section">
+            <h2> CATEGORIES </h2><hr>
+            {% for category in categories %}
+               <a href="{% url 'home' %}?q={{category.name}}" > {{ category.name }} </a><br>
+            {% endfor %}
+
+        </section>
+
+        <section class="product_section">
+        <h3> Men's Wears </h3>
+            {% for product in men_products %}
+
+            <a href=" {% url 'product' product.id  %}" >
+
+            <div>
+                <img src="{{ product.product_image.url }}" width="200px" height="200px"/><br>
+            </div>
+            </a>
+
+            <span id="product_name">{{ product.name }} </span>
+            <span id="product_price">#{{ product.price }} </span>
+
+            {% endfor %}
+
+
+
+
+
+            <h3> Women's Wears </h3>
+            {% for product in women_products %}
+
+            <a href=" {% url 'product' product.id  %}" >
+
+            <div>
+                <img src="{{ product.product_image.url }}" width="200px" height="200px"/><br>
+            </div>
+            </a>
+
+            <span id="product_name">{{ product.name }} </span>
+            <span id="product_price">#{{ product.price }} </span>
+
+            {% endfor %}
+
+
+        </section>
+    </section>
+
+{% endblock %}
+
