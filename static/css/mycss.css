@@ -1,0 +1,113 @@
+* {
+  font-family: "DM Sans", "Segoe UI", Roboto,"Open Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* color: inherit; */
+  font-size: inherit;
+
+}
+ /*Header*/
+.header{
+    display: block;
+    margin: 10px 0px 20px 10px;
+    padding-left: 10px;
+}
+.header a h1{
+    font-size: 40px;
+}
+.header a:link{
+    text-decoration: none;
+}
+.header a{
+    color: #0f5132;
+    font-style: italic;
+}
+   /*Navigation*/
+.navbar ul{
+    margin-right: 10px;
+
+}
+.navbar ul li{
+    display: inline;
+    font-size: 18px;
+    font-weight: bold;
+    justify-content: space-evenly;
+}
+
+.navbar ul li a:link{
+    text-decoration: none;
+}
+
+form #search {
+    width: 30%;
+    height: 10%;
+    margin: 3px 0 10px 10px;
+    padding: 10px;
+    border: 3px solid #0f5132;
+
+}
+@media screen and (max-width:480px ){
+    form #search {
+    width: 80%;
+    height: 10%;
+    margin: 10px auto 10px auto;
+    padding: 10px;
+    border: 2px solid burlywood;
+    }
+}
+
+.container{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+}
+.men_product{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin: auto;
+    padding-top: 10px;
+    background-color: #c5e8ef;
+}
+.women_product{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin: auto;
+    padding-top: 10px;
+    background-color: #c5e8ef;
+
+}
+.search_result{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.category_section{
+    float: left;
+    position: static;
+    margin-right: 10px;
+    background-color: #bcd0c7;
+    height: 100%;
+    padding:5px 35px 0px 10px;
+}
+.category_section a{
+    display: block;
+    padding: 10px 10px 2px 5px;
+    margin-bottom: 2px;
+}
+
+footer{
+        background-color: #0f5132;    
+}
+
+@media  screen and (max-width: 480px) {
+    footer{
+        background-color: #0f5132;
+    }
+
+}
+.messages li{
+    background-color: green;
+}
