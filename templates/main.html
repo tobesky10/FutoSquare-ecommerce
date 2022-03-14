@@ -1,65 +1,72 @@
-{% load static %}
 
 <!DOCTYPE html>
-
+{% load static %}
 <html lang="en">
 <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="UTF-8">
     <title>Main</title>
+    <link rel="stylesheet" href="{% static 'css/mycss.css'%}">
+{#    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">#}
+{#    <link rel="stylesheet" href="{% static 'fa/css/all.min.css' %}">#}
+{#    <script src="{% static 'js/bootstrap.min.js' %}"></script>#}
 </head>
 <body>
 
+    <header>
+        <div class="header">
+            <a href="/"> <h1> FUTOSHOP</h1> </a>
+        </div>
+    </header>
+        <nav>
+            <div class="navbar">
+                <ul>
+                 <li><a href="/">Home </a> </li>
+                 {% if request.user.is_authenticated %}
+                 <li><a href=" {% url 'logout' %}">Logout </a> </li>
+                 <li><a href="{% url 'profile' request.user.id %}">Profile </a> </li>
 
-<header>
-    <a href="/">
-        <h1> FUTOSHOP </h1>
-    </a>
-</header>
-     <nav>
-         <ul>
-             <li><a href="/">Home </a> </li>
-             {% if request.user.is_authenticated %}
-             <li><a href=" {% url 'logout' %}">Logout </a> </li>
-             <li><a href="{% url 'profile' request.user.id %}">Profile </a> </li>
+                 {% else %}
+                 <li><a href=" {% url 'login' %}">Login </a> </li>
+                 {% endif %}
+                 <li><a href="{% url 'cart' %}">Cart </a> </li>
+             </ul>
+            </div>
 
-             {% else %}
-             <li><a href=" {% url 'login' %}">Login </a> </li>
-             {% endif %}
-             <li><a href="{% url 'cart' %}">Cart </a> </li>
-         </ul> {% now 'j F Y H:i' %}<div>
-         <form method="GET" action="">
-             <input type="search" name="q" placeholder="Search item here..."/>
-         </form>
-     </div>
-     </nav><hr>
-<main>
-{% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-            <li>
-                {{ message }}
-            </li>
-            {% endfor %}
+         </nav>
+         {# {% now 'j F Y H:i' %}<div>#}
+             <form method="GET" action="">
+                 <label for="search"></label>
+                 <input id="search" type="search" name="q" placeholder="Search item..."/>
+             </form>
+         <hr><br>
+    <main>
+    {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li>
+                    {{ message }}
+                </li>
+                {% endfor %}
 
-        </ul>
+            </ul>
 
-        {% endif %}
-    {% block content %}
-
-
-    {% endblock %}
-</main><hr>
-
-
-<footer>
-<p><h2> CONTACT US</h2></p>
-    <p> Email: tobesky10@gmail.com </p>
-    <p>Facebook</p>
-    <p>Whatsapp</p>
-    <p>Instagram</p>
-</footer>
+            {% endif %}
+        {% block content %}
 
 
+        {% endblock %}
+    </main><hr>
+
+
+    <footer>
+    <p><h2> CONTACT US</h2></p>
+        <p> Email: tobesky10@gmail.com </p>
+        <p>Facebook</p>
+        <p>Whatsapp</p>
+        <p>Instagram</p>
+    </footer>
 
 </body>
 </html>

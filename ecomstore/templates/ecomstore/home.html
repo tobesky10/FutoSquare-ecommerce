@@ -3,46 +3,39 @@
 {% extends 'main.html' %}
 
 {% block content %}
-    <style>
-    .container{
-        display: grid;
-        grid-template-columns: 1fr 3fr;
-    }
-    .product_section{
-        display: flex;
-        flex-direction: column;
-        gap: 10px
-    }
-</style>
 
 
-    <section class="search_result">
             {% if not search %}
-            <h2> Search Results </h2>
-                <p> Results for "{{ q }}"</p>
+                <h2> <p> Search Results for "{{ q }}"</p></h2>
+    <section class="search_result">
+
             {% for product in products %}
                 <a href="{% url 'product' product.id %}">
                 <div>
-                <img src="{{ product.product_image.url }}" width="200px" height="200px"/><br>
+                <img src="{{ product.product_image.url }}" width="100px" height="100px"/><br>
                 </div>
-                {{ product.name }}
+                 <span id="product_name">Name: {{ product.name }} </span><br>
+            <span id="product_price"> Price: #{{ product.price }} </span>
                 </a>
             {% endfor %}
     {% endif %}
 
+    </section>
 
-            </section>
+
     <section class="container">
         <section class="category_section">
             <h2> CATEGORIES </h2><hr>
             {% for category in categories %}
-               <a href="{% url 'home' %}?q={{category.name}}" > {{ category.name }} </a><br>
+               <a href="{% url 'home' %}?q={{category.name}}" id="category_link" > {{ category.name }} </a><br>
             {% endfor %}
 
         </section>
+    <section class="products">
 
-        <section class="product_section">
-        <h3> Men's Wears </h3>
+        <center> <h3> Men's Wears </h3></center>
+        <section class="men_product">
+
             {% for product in men_products %}
 
             <a href=" {% url 'product' product.id  %}" >
@@ -50,34 +43,35 @@
             <div>
                 <img src="{{ product.product_image.url }}" width="200px" height="200px"/><br>
             </div>
+
+            <span id="product_name">Name: {{ product.name }} </span><br>
+            <span id="product_price"> Price: #{{ product.price }} </span>
+
             </a>
 
-            <span id="product_name">{{ product.name }} </span>
-            <span id="product_price">#{{ product.price }} </span>
-
             {% endfor %}
+        </section>
 
-
-
-
-
-            <h3> Women's Wears </h3>
+            <center> <h3> Women's Wears </h3></center>
+        <section class="women_product">
             {% for product in women_products %}
 
-            <a href=" {% url 'product' product.id  %}" >
+            <a href=" {% url 'product' product.id  %}">
 
             <div>
                 <img src="{{ product.product_image.url }}" width="200px" height="200px"/><br>
             </div>
-            </a>
-
             <span id="product_name">{{ product.name }} </span>
             <span id="product_price">#{{ product.price }} </span>
+            </a>
+
+
 
             {% endfor %}
-
-
         </section>
+
+    </section>
+
     </section>
 
 {% endblock %}

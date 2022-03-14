@@ -6,9 +6,10 @@
     <div id="profile_image">
         <img src="{% static 'images/avatar.svg'%}" width="100px" height="100px"/>
     </div>
+    <a href=" "> Update Profile </a>
 
 
-    <h3><p>{{ profile.first_name }} {{ profile.last_name }}</p></h3>
+    <h5><p>{{ profile.first_name }} {{ profile.last_name }}</p></h5>
 
     <p>{{ profile.email }}</p>
 
@@ -18,21 +19,22 @@
 
 
     <p> <h2> Your Products </h2> </p>
+    {% if products  %}
+
+
         {% for each in products %}
             <p> <img src=" {{ each.product_image.url}}" width="50px" height="50px"/> </p>
             <p>Product name: {{ each.name }}</p>
             <p>Description: {{ each.description }}</p>
             <a href="{% url 'update-product' each.id %}"> Edit product</a>
+            <a href="{% url 'delete-product' each.id %}"> Delete product</a>
 
         {% endfor %}
+    {% else %}
 
+    <p> You don't have a Product. <a href="{% url 'create-product' %}"> Sell a Product</a> </p>
+    {% endif %}
     </section>
-
-
-
-
-
-
 
 
 {% endblock %}

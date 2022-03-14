@@ -2,6 +2,7 @@
 {% block content %}
     <style>
     .login{
+
         padding: 20px;
         margin: 20px;
         justify-items: center;
@@ -9,27 +10,29 @@
 
     }
     .login #submit {
+        width: 10%;
         border-radius: 8px;
     }
 
 
     </style>
 
-
 <section class="login">
 
     <h2> Login </h2>
- <form action=" " method="POST">
-    {% csrf_token %}
+     <div  class="form-group">
+    <form action=" " method="POST">
+
+         {% csrf_token %}
         {{ form.as_p }}
-
-
 
     <input type="submit" value="Login" id="submit"/>
     </form>
+    </div>
+    <p> New to FUTOSHOP ?<a href="{% url 'create-profile' %}"> Register</a> </p>
 
-    <p> Don't have an account?</p>
-    <p><a href="{% url 'create-profile' %}"> Register</a></p>
+
+
 </section>
 
 

@@ -76,7 +76,6 @@ def product(request, pk):
     comments = product.message_set.all()
     related = None
 
-
     def yes():
         global yes
         yes = product.id
@@ -125,6 +124,16 @@ def updateproduct(request, pk):
     return render(request, 'ecomstore/update-product.html', {'product': product, 'form': form})
 
 
+def deleteproduct(request, pk):
+    product = Product.objects.get(id=pk)
+
+    if request.method == 'POST':
+        product.delete()
+        return redirect('profile', pk=request.user.id)
+
+    return render(request, 'ecomstore/delete.html', {'obj': product})
+
+
 def createProfile(request):
     form = Profileform()
 
@@ -163,6 +172,10 @@ def Profile(request, pk):
 
     return render(request, 'ecomstore/profile.html', context)
 
+
+def updateprofile(request, pk):
+
+    return render(request, 'ecomstore/updateprofileform.html')
 
 def cartPage(request):
     if request.user.is_authenticated:
