@@ -1,40 +1,25 @@
 {% extends 'main.html' %}
 {% block content %}
-    <style>
-    .login{
-
-        padding: 20px;
-        margin: 20px;
-        justify-items: center;
-        text-align: center;
-
-    }
-    .login #submit {
-        width: 10%;
-        border-radius: 8px;
-    }
 
 
-    </style>
+<section>
 
-<section class="login">
-
-    <h2> Login </h2>
-     <div  class="form-group">
+    <div class="login_box">
+        <div class="login__boxTitle">
+                <h3> Login </h3>
+        </div>
     <form action=" " method="POST">
-
          {% csrf_token %}
-        {{ form.as_p }}
+        <div class="login">
+            {{ form.as_p }}
+        </div>
 
-    <input type="submit" value="Login" id="submit"/>
+        <button type="submit" class="btn"> Sign in</button>
+
+        <p id="register_link"> New to FUTOSquare?<a href="{% url 'create-profile' %}"> Register</a> </p>
     </form>
     </div>
-    <p> New to FUTOSHOP ?<a href="{% url 'create-profile' %}"> Register</a> </p>
-
-
 
 </section>
-
-
 
 {% endblock %}

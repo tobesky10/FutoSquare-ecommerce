@@ -1,16 +1,35 @@
 {% extends 'main.html' %}
 {% block content %}
 
-<section class="create_product">
-    <h2> Add a Product</h2>
-    <form action=" " method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Add Product"/>
+    <section>
+        <div class="register_box">
+            <div class="register__boxTitle">
+                <h2> Create a Product</h2>
+            </div>
+            <form action=" " method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="register">
+                {{ form.as_p }}
 
-    </form>
+                <div class="form__group">
+                  <label for="product_category">Select a Category:</label>
+                  <input required type="text" class="input" value="{{product.category.name}}" name="category" list="category-list"/>
+                   <datalist id="category-list">
+                     <select id="room_topic">
+                       {% for category in categories %}
+                       <option value="{{category.name}}"> {{category.name}}  </option>
 
-</section>
+                        {% endfor %}
 
+                     </select>
+                   </datalist>
+                </div>
+            </div>
+
+                <button type="submit" class="btn">Add Product</button>
+
+            </form>
+        </div>
+    </section>
 
 {% endblock %}

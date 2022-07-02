@@ -1,77 +1,172 @@
 
 
 {% extends 'main.html' %}
-
 {% block content %}
-
-
-            {% if not search %}
-                <h2> <p> Search Results for "{{ q }}"</p></h2>
-    <section class="search_result">
-
-            {% for product in products %}
-                <a href="{% url 'product' product.id %}">
-                <div>
-                <img src="{{ product.product_image.url }}" width="100px" height="100px"/><br>
+{% load static %}
+    <section>
+        <div class="search_result">
+            {% if search %}
+                <h2> Search Results for "{{ q }}"</h2>
+                <div class="product_result">
+                    {% for product in products %}
+                        <div class="search_products">
+                            <a href="{% url 'product' product.id %}">
+                            <div class="product_image">
+                                <img src="{{ product.product_image1.url }}"/>
+                            </div><br>
+                             <span id="product_name">{{ product.name|capfirst }} </span><br>
+                             <span id="product_price">#{{ product.price }} </span>
+                            </a>
+                        </div>
+                    {% endfor %}<span><a href="{% url 'home' %}">View all </a>  </span>
                 </div>
-                 <span id="product_name">Name: {{ product.name }} </span><br>
-            <span id="product_price"> Price: #{{ product.price }} </span>
-                </a>
-            {% endfor %}
-    {% endif %}
 
+            {% endif %}
+        </div>
+    </section>
+
+    <section>
+        <div class="ads">
+            <div class="ad_image">
+                <img src="{% static 'images/macbook_pro-wallpaper-1280x1024.jpg' %}" alt="Macbook Pro"/>     </div>
+
+            <div class="ad_text">
+                <h2> Macbook pro</h2>
+                <h3> Think different</h3>
+                <p> #250k</p>
+                <button type="submit" class="adbtn"> Buy Now</button>
+
+            </div>
+
+        </div>
     </section>
 
 
-    <section class="container">
-        <section class="category_section">
-            <h2> CATEGORIES </h2><hr>
-            {% for category in categories %}
-               <a href="{% url 'home' %}?q={{category.name}}" id="category_link" > {{ category.name }} </a><br>
-            {% endfor %}
+    <section>
+        <div class="container">
+            <div class="category_section">
+{#                <h2> CATEGORIES </h2><hr>#}
+                {% for category in categories %}
+                   <a href="{% url 'home' %}?q={{category.name}}" id="category_link" > {{ category.name }} </a><br>
+                {% endfor %}
 
-        </section>
-    <section class="products">
-
-        <center> <h3> Men's Wears </h3></center>
-        <section class="men_product">
-
-            {% for product in men_products %}
-
-            <a href=" {% url 'product' product.id  %}" >
-
-            <div>
-                <img src="{{ product.product_image.url }}" width="200px" height="200px"/><br>
             </div>
 
-            <span id="product_name">Name: {{ product.name }} </span><br>
-            <span id="product_price"> Price: #{{ product.price }} </span>
+            <div class="products">
+                <section>
+                    <div class="category_title">
+                        <h3>  Men's Wears </h3>
+                    </div>
+                    <div class="men_product">
+                        {% for product in men_products %}
+                        <div class="main_product">
+                            <a href=" {% url 'product' product.id  %}" >
 
-            </a>
+                            <div class="product_image">
+                                <img src="{{ product.product_image1.url }}"/><br>
+                            </div>
 
-            {% endfor %}
-        </section>
+                            <span id="product_name">{{ product.name|capfirst }} </span><br>
+                            <span id="product_price">#{{ product.price }} </span>
 
-            <center> <h3> Women's Wears </h3></center>
-        <section class="women_product">
-            {% for product in women_products %}
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </section>
 
-            <a href=" {% url 'product' product.id  %}">
+                <section>
+                    <div class="category_title">
+                        <h3> Women's Wears </h3>
+                    </div>
+                    <div class="women_product">
+                        {% for product in women_products %}
+                        <div class="main_product">
+                            <a href=" {% url 'product' product.id  %}">
 
-            <div>
-                <img src="{{ product.product_image.url }}" width="200px" height="200px"/><br>
+                            <div class="product_image">
+                                <img src="{{ product.product_image1.url }}"/><br>
+                            </div>
+
+                            <span id="product_name">{{ product.name|capfirst }}<br> </span>
+                            <span id="product_price">#{{ product.price }} </span>
+                            </a>
+                        </div>
+
+
+                        {% endfor %}
+                    </div>
+
+                </section>
+
+                <section>
+                    <div class="category_title">
+                        <h3>  Technology </h3>
+                    </div>
+                    <div class="men_product">
+                        {% for product in men_products %}
+                        <div class="main_product">
+                            <a href=" {% url 'product' product.id  %}" >
+
+                            <div class="product_image">
+                                <img src="{{ product.product_image1.url }}"/><br>
+                            </div>
+
+                            <span id="product_name">{{ product.name|capfirst }} </span><br>
+                            <span id="product_price">#{{ product.price }} </span>
+
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </section>
+
+                <section>
+                    <div class="category_title">
+                        <h3>  New Products </h3>
+                    </div>
+                    <div class="men_product">
+                        {% for product in men_products %}
+                        <div class="main_product">
+                            <a href=" {% url 'product' product.id  %}" >
+
+                            <div class="product_image">
+                                <img src="{{ product.product_image1.url }}"/><br>
+                            </div>
+
+                            <span id="product_name">{{ product.name|capfirst }} </span><br>
+                            <span id="product_price">#{{ product.price }} </span>
+
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </section>
+
+                <section>
+                    <div class="category_title">
+                        <h3>  Top Sellers </h3>
+                    </div>
+                    <div class="men_product">
+                        {% for product in men_products %}
+                        <div class="main_product">
+                            <a href=" {% url 'product' product.id  %}" >
+
+                            <div class="product_image">
+                                <img src="{{ product.product_image1.url }}"/><br>
+                            </div>
+
+                            <span id="product_name">{{ product.name|capfirst }} </span><br>
+                            <span id="product_price">#{{ product.price }} </span>
+
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </section>
             </div>
-            <span id="product_name">{{ product.name }} </span>
-            <span id="product_price">#{{ product.price }} </span>
-            </a>
 
-
-
-            {% endfor %}
-        </section>
-
-    </section>
-
+        </div>
     </section>
 
 {% endblock %}

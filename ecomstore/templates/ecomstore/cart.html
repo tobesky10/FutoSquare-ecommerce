@@ -1,24 +1,43 @@
 
 {% extends 'main.html' %}
-
+{% load static %}
 {% block content %}
-    {% if request.user.is_authenticated %}
 <section>
+    <div class="cart_box">
 
-    <h1> CART </h1>
-{% for para in obj %}
-    <p><img src="{{ para.product.product_image.url }}" width="200px" height="200px"{{ para.product_image }}/>  </p>
+                {% if cart %}
+                    <div class="cart_title">
+            <ul>
+                <li> <h1> CART </h1></li>
+                <li> <h2> Total: #{{total_amount}} </h2></li>
+            </ul>
+        </div>
 
-    <p>Date added: {{ para.date_added }}</p>
-    <p>{{ para.product.name }}</p>
-    <p> Quantity: {{ para.quantity }}</p>
-    <p>Email: {{ para.user}}</p>
+            {% for para in cart %}
+        <div class="cart_products">
+            <div id="cart_image">
+                <img src="{{ para.product.product_image1.url }}" width="200px" height="200px"{{ para.product_image }}/>
+            </div>
+            <div id="cart_details">
+                <p>Date added: {{ para.date_added }}</p>
+                <p>{{ para.product.name }}</p>
+                Quantity: <input type="number" name="quantity" value="1" style="width: 2rem"/>
+                <p>Price: #{{ para.product.price}}</p>
+                <form method="post" action="{% url 'delete-cart' para.id %}">
+                    {% csrf_token %}
+                    <span><button type="submit" > Remove</button> </span> <span><button type="button" autofocus style="background-color: #13653f"> Buy</button> </span>
+                </form>
+            </div>
+        </div>
+            {% endfor %}
+            {% else %}
+        <div class="empty_cart">
+            <img src="{% static '/images/emptycart1.png' %}" alt="!You don't seem to have an product stored up."/>
+            <p style="color: #13653f; font-size: 25px"> !Hmm, it seems your cart is empty.</p>
+        </div>
+            {% endif %}
+    </div>
 
-    {% endfor %}
-
-        {% else %}
-        <p> Please Log in</p>
-{% endif %}
 </section>
 
 {% endblock %}

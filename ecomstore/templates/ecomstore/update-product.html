@@ -1,18 +1,35 @@
 {% extends 'main.html' %}
 
 {% block content %}
-    <section class="create_product">
-    <h2> Update Product</h2>
-    <form action=" " method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Submit"/>
+    <section>
+        <div class="register_box">
+            <div class="register__boxTitle">
+                <h2> Edit Product</h2>
+            </div>
+            <form action=" " method="POST">
+                {% csrf_token %}
+                <div class="register">
+                {{ form.as_p }}
 
-    </form>
+                <div class="form__group" >
+                  <label for="product_category">Select a new category:</label>
+                  <input required type="text" class="input" value="{{category.name}}" name="category" list="category-list"/>
+                   <datalist id="category-list">
+                     <select id="room_topic">
+                       {% for category in categories %}
+                       <option value="{{category.name}}"> {{category.name}}  </option>
 
+                        {% endfor %}
+
+                     </select>
+                   </datalist>
+                </div>
+            </div>
+
+                <button type="submit" class="btn">Update Product</button>
+            </form>
+        </div>
 
 </section>
-
-
 
 {% endblock %}

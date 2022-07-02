@@ -2,20 +2,25 @@
 
 {% block content %}
 
-    <section class="register-form">
-        <h1> CREATE A FUTOSHOP ACCOUNT </h1>
-
+    <section >
+    <div class="register_box">
+        <div class="register__boxTitle">
+            <h1> CREATE A FUTOSquare ACCOUNT </h1>
+        </div>
 
         <form action=" " method="POST" >
         {% csrf_token %}
+        <div class="register">
+            {{ form.as_p }}
+        </div>
 
-        {{ form.as_p }}
 
-        <input type="submit" value="Create Profile">
-
+            <button type="submit" class="btn btn--main"> Register </button>
+            <p id="register_link"> Already have an account? <a href="{% url 'login' %}"> Sign In</a></p>
         </form>
-        <p> Already have an account?</p>
-        <p><a href="{% url 'login' %}"> Sign In</a></p>
+
+    </div>
+
 
 
 

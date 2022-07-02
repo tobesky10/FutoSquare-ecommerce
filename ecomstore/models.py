@@ -1,3 +1,4 @@
+from django.core.validators import validate_comma_separated_integer_list
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
@@ -7,7 +8,8 @@ class User(AbstractUser):
     email = models.EmailField(unique=True)
     address = models.CharField(max_length=50, null=True)
     phone_number = models.PositiveBigIntegerField(null=True)
-    profile_image = models.ImageField(upload_to='profiles/', null=True)
+    avatar = models.ImageField(upload_to='profiles/', null=True, default='avatar.svg')
+    # gender = models.
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -15,10 +17,12 @@ class User(AbstractUser):
 
 class Product(models.Model):
     name = models.CharField(max_length=20)
-    price = models.IntegerField()
-    description = models.TextField(max_length=50)
-    product_image = models.ImageField(upload_to='images/', max_length=200, null=True)
-    category = models.ForeignKey('Category', on_delete=models.CASCADE, null=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    description = models.TextField(max_length=60)
+    product_image1 = models.ImageField(upload_to='images/', null=True, blank=True)
+    product_image2 = models.ImageField(upload_to='images/', null=True, blank=True)
+    product_image3 = models.ImageField(upload_to='images/', null=True, blank=True)
+    category = models.ForeignKey('Category', on_delete=models.CASCADE, null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
     class Meta:
@@ -30,7 +34,8 @@ class Product(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=30)
-    products = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, blank=True, related_name='category_products')
+    products = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, blank=True,
+                                 related_name='category_products')
 
     def __str__(self):
         return self.name
