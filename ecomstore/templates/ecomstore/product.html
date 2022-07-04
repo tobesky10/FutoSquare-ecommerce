@@ -8,9 +8,12 @@
                     <div id="product_image">
                         <img src=" {{ product.product_image1.url }}" />
                     </div>
-                    <div>
-                        <img/>
+                    {% if product.product_image2 or product.product_image3 %}
+                    <div id="other_product_images">
+                        <img src=" {{ product.product_image2.url }}" style="width: 8rem; height: 8rem" />
+                        <img src=" {{ product.product_image3.url }}" style="width: 8rem; height: 8rem"/>
                     </div>
+                    {% endif %}
                     <div id="product_details">
                         <span id="product_name">{{ product.name }}</span> <span id="product_price"><sup>#</sup>{{ product.price }}</span><br/>
                         <cite>{{ product.description }} </cite>

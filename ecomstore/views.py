@@ -128,13 +128,18 @@ def updateproduct(request, pk):
     form = Productform()
 
     if request.method == 'POST':
-        form = Productform(request.POST, instance=product)
+        form = Productform(request.POST, instanc=product)
+
         if form.is_valid():
             form.save()
 
         return redirect('profile', pk=request.user.id)
 
-    return render(request, 'ecomstore/update-product.html', {'product': product, 'form': form, 'categories': categories})
+    return render(request, 'ecomstore/update-product.html',
+                  {'product': product,
+                   'form': form,
+                   'categories': categories
+                   })
 
 
 def deleteproduct(request, pk):
@@ -192,9 +197,9 @@ def Profile(request, pk):
 
 def updateprofile(request, pk):
     profile = User.objects.get(id=pk)
-    form = UpdateProfileform
+    form = Profileform
     if request.method == 'POST':
-        form = UpdateProfileform(request.POST)
+        form = Profileform(request.POST)
         if form.is_valid():
             form.save()
 

@@ -265,6 +265,7 @@ form #search {
     }
 }
 
+
 #product_name{
     font-family: "DM Sans", "Segoe UI", Roboto, "Open Sans", sans-serif;
     font-weight: 400;
@@ -603,6 +604,7 @@ form #search {
     border-radius: 8px;
     height: max-content;
     width: 98%;
+    margin: 9px auto;
 
 }
 .profile_main p i{
@@ -720,20 +722,26 @@ textarea {
         object-fit: contain;
     }
 }
+#other_product_images{
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+
 #product_details{
     margin: 0 auto;
     text-align: center;
 }
 #related_items_main{
     padding: 1rem;
-    border: 1px solid;
     margin-top: 1rem;
 }
 @media screen and (min-width: 1028px) {
     #related_items_main{
 
         padding: 1rem;
-        border: 1px solid;
+
         margin: 1rem auto;
         width: 90%;
 
@@ -765,7 +773,7 @@ textarea {
     margin: 1rem 1rem;
     padding-left: 1rem;
     padding-bottom: 1rem;
-    border: 1px solid;
+
     height: fit-content;
 
 }

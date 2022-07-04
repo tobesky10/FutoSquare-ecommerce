@@ -5,10 +5,10 @@
     <section>
         <div class="profile">
             <div id="profile_image">
-                <img src="{{  profile.avatar.url }}" />
+                <img src="{{profile.avatar.url }}" />
             </div>
             <div class="profile_info">
-{#            <a href="{% url 'update-profile' request.user.id %} "> Update Profile </a>#}
+            <a href="{% url 'update-profile' request.user.id %} "> Update Profile </a>
                 <div class="profile_main">
 
                     <p style="font-size: 22px; font-weight: 600"> {{ profile.first_name }} {{ profile.last_name }}</p>
@@ -30,7 +30,7 @@
                     {% if products  %}
                         {% for each in products %}
                         <div class="sub_products">
-                            <img src="{{ each.product_image.url}}"/>
+                            <img src="{{ each.product_image1.url}}"/>
                             <p>Product: {{ each.name|capfirst }}</p>
                             <p>Description: {{ each.description }}</p>
                             <a href="{% url 'update-product' each.id %}"> Edit product</a>
